@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(pnpm init:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tailwindcss init:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(find:*)",
+      "Bash(dir:*)",
+      "Read(//c/Users/user/Desktop/**)",
+      "Bash(del appfeaturesfront-of-housepage.tsx)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(del nul)",
+      "Bash(rm:*)",
+      "Bash(git config:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
