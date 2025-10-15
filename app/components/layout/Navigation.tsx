@@ -77,8 +77,18 @@ export default function Navigation() {
   }, [])
 
   const [featuresDropdownOpen, setFeaturesDropdownOpen] = useState(false)
+  const [productsDropdownOpen, setProductsDropdownOpen] = useState(false)
 
   const navLinks = [
+    {
+      name: 'Products',
+      href: '/products',
+      dropdown: [
+        { name: 'Digital Menu', href: '/products/digital-menu' },
+        { name: 'Order & Pay', href: '/products/order-and-pay' },
+        { name: 'Pay at Table', href: '/products/pay-at-table' },
+      ]
+    },
     {
       name: 'Features',
       href: '/features',
@@ -122,61 +132,68 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <div
-                key={link.name}
-                className="relative"
-                onMouseEnter={() => link.dropdown && setFeaturesDropdownOpen(true)}
-                onMouseLeave={() => link.dropdown && setFeaturesDropdownOpen(false)}
-              >
-                <Link href={link.href}>
-                  <motion.span
-                    className={`${isScrolled ? 'text-navy' : 'text-white'} hover:text-coral transition-colors duration-300 text-sm cursor-pointer`}
-                    whileHover={{ y: -2 }}
-                  >
-                    {link.name}
-                  </motion.span>
-                </Link>
+            {navLinks.map((link) => {
+              const isDropdownOpen = link.name === 'Products' ? productsDropdownOpen :
+                                     link.name === 'Features' ? featuresDropdownOpen : false
+              const setDropdownOpen = link.name === 'Products' ? setProductsDropdownOpen :
+                                      link.name === 'Features' ? setFeaturesDropdownOpen : null
 
-                {/* Dropdown Menu */}
-                {link.dropdown && (
-                  <AnimatePresence>
-                    {featuresDropdownOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-64 bg-white/95 backdrop-blur-xl rounded-3xl shadow-xl border border-navy/5 overflow-hidden"
-                      >
-                        <div className="p-2">
-                          {link.dropdown.map((item, index) => (
-                            <Link key={item.name} href={item.href}>
-                              <motion.div
-                                initial={{ opacity: 0, y: -5 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.03, duration: 0.2 }}
-                                className="group px-5 py-3.5 text-navy/80 hover:bg-coral/5 rounded-2xl transition-all duration-200 cursor-pointer text-sm font-medium flex items-center justify-between"
-                              >
-                                <span className="group-hover:text-coral transition-colors">{item.name}</span>
-                                <svg
-                                  className="w-4 h-4 text-coral opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  stroke="currentColor"
+              return (
+                <div
+                  key={link.name}
+                  className="relative"
+                  onMouseEnter={() => link.dropdown && setDropdownOpen && setDropdownOpen(true)}
+                  onMouseLeave={() => link.dropdown && setDropdownOpen && setDropdownOpen(false)}
+                >
+                  <Link href={link.href}>
+                    <motion.span
+                      className={`${isScrolled ? 'text-navy' : 'text-white'} hover:text-coral transition-colors duration-300 text-sm cursor-pointer`}
+                      whileHover={{ y: -2 }}
+                    >
+                      {link.name}
+                    </motion.span>
+                  </Link>
+
+                  {/* Dropdown Menu */}
+                  {link.dropdown && (
+                    <AnimatePresence>
+                      {isDropdownOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-64 bg-white/95 backdrop-blur-xl rounded-3xl shadow-xl border border-navy/5 overflow-hidden"
+                        >
+                          <div className="p-2">
+                            {link.dropdown.map((item, index) => (
+                              <Link key={item.name} href={item.href}>
+                                <motion.div
+                                  initial={{ opacity: 0, y: -5 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: index * 0.03, duration: 0.2 }}
+                                  className="group px-5 py-3.5 text-navy/80 hover:bg-coral/5 rounded-2xl transition-all duration-200 cursor-pointer text-sm font-medium flex items-center justify-between"
                                 >
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                </svg>
-                              </motion.div>
-                            </Link>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                )}
-              </div>
-            ))}
+                                  <span className="group-hover:text-coral transition-colors">{item.name}</span>
+                                  <svg
+                                    className="w-4 h-4 text-coral opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                  >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                  </svg>
+                                </motion.div>
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  )}
+                </div>
+              )
+            })}
           </div>
 
           {/* CTA Button */}

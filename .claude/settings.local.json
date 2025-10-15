@@ -21,7 +21,10 @@
       "Bash(git commit:*)",
       "Bash(del nul)",
       "Bash(rm:*)",
-      "Bash(git config:*)"
+      "Bash(git config:*)",
+      "Bash(del c:UsersuserDesktoptillwebemailsdigital-menu.html)",
+      "Bash(del c:UsersuserDesktoptillwebemailsorder-and-pay.html)",
+      "Bash(del c:UsersuserDesktoptillwebemailspay-at-table.html)"
     ],
     "deny": [],
     "ask": []

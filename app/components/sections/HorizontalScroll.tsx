@@ -14,6 +14,7 @@ export default function HorizontalScroll() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
     if (!containerRef.current || !scrollContainerRef.current) return
 
     const container = containerRef.current
@@ -37,7 +38,9 @@ export default function HorizontalScroll() {
       })
     }, container)
 
-    return () => ctx.revert()
+    return () => {
+      ctx.revert()
+    }
   }, [])
 
   const features = [
