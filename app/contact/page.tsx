@@ -13,6 +13,8 @@ export default function ContactPage() {
     phone: '',
     message: ''
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
@@ -35,10 +37,32 @@ export default function ContactPage() {
     })
   }, [])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log('Form submitted:', formData)
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', company: '', phone: '', message: '' })
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -184,11 +208,32 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="group w-full md:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 bg-coral text-white font-semibold rounded-full hover:bg-coral-dark transition-all text-lg shadow-lg hover:shadow-xl"
+                  disabled={isSubmitting}
+                  className="group w-full md:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 bg-coral text-white font-semibold rounded-full hover:bg-coral-dark transition-all text-lg shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                   <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
+
+                {submitStatus === 'success' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-4 bg-green-50 border border-green-200 rounded-xl text-green-800"
+                  >
+                    Thank you! Your message has been sent successfully.
+                  </motion.div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-800"
+                  >
+                    Something went wrong. Please try again or email us directly.
+                  </motion.div>
+                )}
               </form>
             </motion.div>
 
