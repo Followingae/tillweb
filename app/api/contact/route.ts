@@ -1,17 +1,24 @@
-import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import nodemailer from 'nodemailer';
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { name, email, company, phone, message } = body;
 
-    // Send email using Resend
-    const data = await resend.emails.send({
-      from: 'Till Contact Form <onboarding@resend.dev>', // You'll change this to your verified domain
-      to: process.env.CONTACT_EMAIL || 'your-email@example.com', // Your email
+    // Create transporter using Gmail SMTP
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD, // Use App Password, not regular password
+      },
+    });
+
+    // Send email
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: process.env.CONTACT_EMAIL || process.env.EMAIL_USER,
       replyTo: email,
       subject: `New Contact Form Submission from ${name}`,
       html: `
@@ -25,7 +32,7 @@ export async function POST(request: Request) {
       `,
     });
 
-    return NextResponse.json({ success: true, data }, { status: 200 });
+    return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
     console.error('Error sending email:', error);
     return NextResponse.json(
