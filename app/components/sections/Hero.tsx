@@ -22,8 +22,7 @@ export default function Hero() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end start'],
-    layoutEffect: false
+    offset: ['start start', 'end start']
   })
 
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95])
