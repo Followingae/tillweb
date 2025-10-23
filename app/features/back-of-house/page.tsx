@@ -71,8 +71,8 @@ export default function BackOfHousePage() {
         type: 'pointer',
         onMove: (self) => {
           const rect = (card as HTMLElement).getBoundingClientRect()
-          const x = (self.x - rect.left) / rect.width - 0.5
-          const y = (self.y - rect.top) / rect.height - 0.5
+          const x = ((self.x ?? 0) - rect.left) / rect.width - 0.5
+          const y = ((self.y ?? 0) - rect.top) / rect.height - 0.5
 
           gsap.to(card, {
             rotateY: x * 15,

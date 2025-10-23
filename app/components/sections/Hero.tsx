@@ -34,16 +34,18 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       // Character-by-character reveal on title
       const chars = titleRef.current?.querySelectorAll('.hero-char')
-      gsap.from(chars, {
-        opacity: 0,
-        y: 100,
-        rotationX: -90,
-        transformOrigin: 'top center',
-        duration: 0.8,
-        stagger: 0.02,
-        ease: 'power4.out',
-        delay: 0.5
-      })
+      if (chars && chars.length > 0) {
+        gsap.from(chars, {
+          opacity: 0,
+          y: 100,
+          rotationX: -90,
+          transformOrigin: 'top center',
+          duration: 0.8,
+          stagger: 0.02,
+          ease: 'power4.out',
+          delay: 0.5
+        })
+      }
 
       // Floating stats with intense 3D transforms
       gsap.from('.stat-card', {
@@ -77,8 +79,8 @@ export default function Hero() {
       Observer.create({
         type: 'pointer',
         onMove: (self) => {
-          const x = (self.x / window.innerWidth - 0.5) * 40
-          const y = (self.y / window.innerHeight - 0.5) * 40
+          const x = ((self.x ?? 0) / window.innerWidth - 0.5) * 40
+          const y = ((self.y ?? 0) / window.innerHeight - 0.5) * 40
 
           gsap.to('.parallax-bg', {
             x: -x * 0.2,
