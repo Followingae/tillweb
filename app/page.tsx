@@ -5,6 +5,7 @@ import DeviceShowcase from './components/sections/DeviceShowcase'
 import ProductShowcase from './components/sections/ProductShowcase'
 import IndustryBadges from './components/sections/IndustryBadges'
 import AIIntelligence from './components/sections/AIIntelligence'
+import RFMPartner from './components/sections/RFMPartner'
 import Footer from './components/sections/Footer'
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <ProductShowcase />
       <IndustryBadges />
       <AIIntelligence />
+      <RFMPartner />
       <Footer />
     </main>
   )

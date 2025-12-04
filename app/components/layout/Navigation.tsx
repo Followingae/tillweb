@@ -144,7 +144,7 @@ export default function Navigation() {
                 Powered by
               </span>
               <Image
-                src="/images/rfm-loyalty-logo.svg"
+                src="/images/RFM-Logo8.png"
                 alt="RFM Loyalty"
                 width={90}
                 height={18}
