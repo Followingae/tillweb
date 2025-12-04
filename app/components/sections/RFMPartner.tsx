@@ -134,9 +134,9 @@ export default function RFMPartner() {
         >
           <p className="text-lg lg:text-xl text-navy/70 leading-relaxed mb-8 font-light">
             Till is proudly powered by <span className="font-semibold text-navy">RFM Loyalty</span>,
-            established in UAE since 2007 with over 10,000+ terminals serving 15,000+ merchants.
-            Processing AED 1 billion+ monthly, RFM provides payment processing and loyalty solutions
-            trusted by banks, retailers, hotels, and restaurants across the UAE.
+            established in UAE since 2007 with 25,000+ terminals serving 20,000+ merchants.
+            Processing AED 1.5 billion+ monthly, RFM provides payment processing and loyalty solutions
+            trusted by retailers, hotels, and restaurants all over the UAE.
           </p>
 
           {/* Key benefits grid */}
@@ -155,7 +155,7 @@ export default function RFMPartner() {
               </div>
               <h3 className="font-semibold text-navy mb-2 text-sm uppercase tracking-wide">Payment Processing</h3>
               <p className="text-navy/60 text-sm leading-relaxed">
-                10,000+ terminals processing Visa, Mastercard, and Amex through FAB bank partnership
+                25,000+ terminals processing Visa, Mastercard, and Amex across the UAE
               </p>
             </motion.div>
 
@@ -173,7 +173,7 @@ export default function RFMPartner() {
               </div>
               <h3 className="font-semibold text-navy mb-2 text-sm uppercase tracking-wide">Loyalty Solutions</h3>
               <p className="text-navy/60 text-sm leading-relaxed">
-                Design, launch, and manage loyalty programs for banks, retailers, hotels, and restaurants
+                Design, launch, and manage loyalty programs for retailers, hotels, and restaurants
               </p>
             </motion.div>
 
@@ -189,9 +189,9 @@ export default function RFMPartner() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="font-semibold text-navy mb-2 text-sm uppercase tracking-wide">UAE Presence</h3>
+              <h3 className="font-semibold text-navy mb-2 text-sm uppercase tracking-wide">UAE Coverage</h3>
               <p className="text-navy/60 text-sm leading-relaxed">
-                Offices in Dubai, Abu Dhabi, and Ajman serving 15,000+ merchants since 2007
+                Serving 20,000+ merchants all over the UAE since 2007
               </p>
             </motion.div>
           </div>
