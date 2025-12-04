@@ -1,0 +1,12 @@
+<svg width="1556" height="320" viewBox="0 0 1556 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Red background section -->
+  <rect width="607" height="320" fill="#B4292E"/>
+  <!-- Gray background section -->
+  <rect x="607" width="949" height="320" fill="#6B7575"/>
+
+  <!-- RFM text (white on red) -->
+  <text x="60" y="240" font-family="Arial, sans-serif" font-size="180" font-weight="700" fill="white">RFM</text>
+
+  <!-- Loyalty text (white on gray) -->
+  <text x="660" y="240" font-family="Arial, sans-serif" font-size="180" font-weight="300" fill="white">Loyalty</text>
+</svg>

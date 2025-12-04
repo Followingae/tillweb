@@ -114,21 +114,44 @@ export default function Navigation() {
       <div className="max-w-[1600px] mx-auto px-8 py-6">
         <div className="flex items-center justify-between">
           {/* Logo with GSAP magnetic + scroll effects */}
-          <Link href="/">
-            <div
-              ref={logoRef}
-              className="relative cursor-pointer"
-              style={{ transformStyle: 'preserve-3d' }}
-            >
+          <div className="flex items-center gap-4 md:gap-6">
+            <Link href="/">
+              <div
+                ref={logoRef}
+                className="relative cursor-pointer"
+                style={{ transformStyle: 'preserve-3d' }}
+              >
+                <Image
+                  src="/images/Primarylogo-till.png"
+                  alt="Till Logo"
+                  width={70}
+                  height={70}
+                  className="w-16 h-16 md:w-20 md:h-20 transition-opacity hover:opacity-90"
+                />
+              </div>
+            </Link>
+
+            {/* Minimal separator line */}
+            <div className={`hidden md:block w-px h-12 transition-colors duration-300 ${
+              isScrolled ? 'bg-navy/20' : 'bg-white/30'
+            }`} />
+
+            {/* Powered by RFM Loyalty */}
+            <div className="hidden md:flex flex-col gap-0.5">
+              <span className={`text-[10px] uppercase tracking-wider transition-colors duration-300 ${
+                isScrolled ? 'text-navy/40' : 'text-white/50'
+              }`}>
+                Powered by
+              </span>
               <Image
-                src="/images/Primarylogo-till.png"
-                alt="Till Logo"
-                width={70}
-                height={70}
-                className="w-16 h-16 md:w-20 md:h-20 transition-opacity hover:opacity-90"
+                src="/images/rfm-loyalty-logo.svg"
+                alt="RFM Loyalty"
+                width={90}
+                height={18}
+                className="opacity-90"
               />
             </div>
-          </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
