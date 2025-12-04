@@ -1,53 +1,24 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Draggable } from 'gsap/Draggable'
 
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger, Draggable)
+  gsap.registerPlugin(ScrollTrigger)
 }
 
 export default function ProductShowcase() {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const [revealedCards, setRevealedCards] = useState<boolean[]>([false, false, false])
 
   useEffect(() => {
     if (!sectionRef.current) return
 
     const ctx = gsap.context(() => {
-      // Make feature cards draggable
       const cards = sectionRef.current?.querySelectorAll('.product-card')
       cards?.forEach((card, index) => {
-        const overlay = card.querySelector('.card-overlay') as HTMLElement
-        const background = card.querySelector('.card-background') as HTMLElement
-
-        if (overlay && background) {
-          const draggable = Draggable.create(overlay, {
-            type: 'x',
-            bounds: { minX: -400, maxX: 0 },
-            onDrag: function() {
-              // As you drag left, reveal the background
-              const progress = Math.abs(this.x) / 400
-              gsap.set(background, { opacity: progress })
-            },
-            onDragEnd: function() {
-              if (Math.abs(this.x) > 200) {
-                // Snap fully open
-                gsap.to(overlay, { x: -400, duration: 0.4, ease: 'power2.out' })
-                gsap.to(background, { opacity: 1, duration: 0.4 })
-              } else {
-                // Snap back closed
-                gsap.to(overlay, { x: 0, duration: 0.5, ease: 'back.out(1.7)' })
-                gsap.to(background, { opacity: 0, duration: 0.5 })
-              }
-            }
-          })
-        }
-
-        // Scroll entrance animation
+        // Scroll entrance animation for content
         const content = card.querySelector('.product-content')
         gsap.fromTo(
           content,
@@ -64,6 +35,25 @@ export default function ProductShowcase() {
             }
           }
         )
+
+        // Scroll entrance animation for feature list
+        const features = card.querySelectorAll('.feature-item')
+        gsap.fromTo(
+          features,
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top center+=150',
+              toggleActions: 'play none none reverse'
+            }
+          }
+        )
       })
     }, sectionRef)
 
@@ -75,24 +65,21 @@ export default function ProductShowcase() {
       number: '01',
       title: 'Front of House',
       description: 'POS, CRM, and loyalty. QR ordering and table management. Everything guests need.',
-      color: 'from-coral to-coral/80',
-      emoji: '🍽️',
+      color: 'coral',
       details: ['POS & Payments', 'CRM & Loyalty', 'QR Ordering', 'Table Management']
     },
     {
       number: '02',
       title: 'Payment Terminal',
       description: 'Full order management on Android terminals. One device, everything.',
-      color: 'from-golden to-golden/80',
-      emoji: '💳',
+      color: 'golden',
       details: ['Order Management', 'Bill Splitting', 'Self-Service', 'Android Native']
     },
     {
       number: '03',
       title: 'Back of House',
       description: 'Kitchen displays, inventory, and staff workflows. Analytics and integrations included.',
-      color: 'from-navy to-navy/80',
-      emoji: '👨‍🍳',
+      color: 'navy',
       details: ['Kitchen Display', 'Inventory', 'Staff Workflows', 'Analytics']
     }
   ]
@@ -143,38 +130,26 @@ export default function ProductShowcase() {
                 </button>
               </div>
 
-              {/* Interactive Card */}
+              {/* Feature List */}
               <div className={`relative ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                <div className="relative aspect-square">
-
-                  {/* Background: Feature Details (revealed on drag) */}
-                  <div className="card-background absolute inset-0 rounded-3xl bg-beige p-8 flex flex-col justify-center items-end shadow-xl opacity-0">
-                    <div className="space-y-4 w-full">
-                      {feature.details.map((detail, i) => (
-                        <div key={i} className="flex items-center justify-end gap-4 p-5 bg-white rounded-2xl border-2 border-navy/20 shadow-md ml-auto">
-                          <span className="text-navy font-semibold text-lg text-right">{detail}</span>
-                          <div className={`w-3 h-3 rounded-full bg-gradient-to-br ${feature.color} flex-shrink-0`} />
-                        </div>
-                      ))}
+                <div className="space-y-4">
+                  {feature.details.map((detail, i) => (
+                    <div
+                      key={i}
+                      className={`feature-item flex items-center gap-4 p-6 bg-white rounded-2xl border transition-all duration-300 hover:shadow-lg group ${
+                        feature.color === 'coral' ? 'border-navy/10 hover:border-coral/30' :
+                        feature.color === 'golden' ? 'border-navy/10 hover:border-golden/30' :
+                        'border-navy/10 hover:border-navy/30'
+                      }`}
+                    >
+                      <div className={`w-2 h-2 rounded-full flex-shrink-0 group-hover:scale-150 transition-transform duration-300 ${
+                        feature.color === 'coral' ? 'bg-coral' :
+                        feature.color === 'golden' ? 'bg-golden' :
+                        'bg-navy'
+                      }`} />
+                      <span className="text-navy font-medium text-lg">{detail}</span>
                     </div>
-                  </div>
-
-                  {/* Overlay: Draggable Card */}
-                  <div className={`card-overlay absolute inset-0 rounded-3xl bg-gradient-to-br ${feature.color} p-10 shadow-2xl cursor-grab active:cursor-grabbing select-none`}>
-                    <div className="w-full h-full bg-white/10 backdrop-blur-sm rounded-2xl flex flex-col items-center justify-center border border-white/20">
-                      <div className="text-9xl mb-6 pointer-events-none">{feature.emoji}</div>
-                      <div className="text-white text-base font-semibold uppercase tracking-wider mb-12 pointer-events-none">{feature.title}</div>
-
-                      {/* Drag Indicator */}
-                      <div className="flex items-center gap-2 text-white/60 text-sm uppercase tracking-wider pointer-events-none">
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                        </svg>
-                        <span>Drag to reveal</span>
-                      </div>
-                    </div>
-                  </div>
-
+                  ))}
                 </div>
               </div>
             </div>
