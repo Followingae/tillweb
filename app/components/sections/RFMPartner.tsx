@@ -114,9 +114,9 @@ export default function RFMPartner() {
             <Image
               src="/images/RFM-Logo8.png"
               alt="RFM Loyalty"
-              width={500}
-              height={100}
-              className="w-full max-w-[500px] h-auto transition-all duration-500 group-hover:scale-105"
+              width={280}
+              height={70}
+              className="w-full max-w-[280px] h-auto transition-all duration-500 group-hover:scale-105"
             />
 
             {/* Hover effect overlay */}
@@ -134,8 +134,9 @@ export default function RFMPartner() {
         >
           <p className="text-lg lg:text-xl text-navy/70 leading-relaxed mb-8 font-light">
             Till is proudly powered by <span className="font-semibold text-navy">RFM Loyalty</span>,
-            the UAE's leading customer engagement and loyalty solutions provider. Together, we're
-            transforming how restaurants connect with their customers and grow their business.
+            established in UAE since 2007 with over 10,000+ terminals serving 15,000+ merchants.
+            Processing AED 1 billion+ monthly, RFM provides payment processing and loyalty solutions
+            trusted by banks, retailers, hotels, and restaurants across the UAE.
           </p>
 
           {/* Key benefits grid */}
@@ -152,9 +153,9 @@ export default function RFMPartner() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="font-semibold text-navy mb-2 text-sm uppercase tracking-wide">Enterprise Power</h3>
+              <h3 className="font-semibold text-navy mb-2 text-sm uppercase tracking-wide">Payment Processing</h3>
               <p className="text-navy/60 text-sm leading-relaxed">
-                Built on enterprise-grade infrastructure trusted by UAE's top brands
+                10,000+ terminals processing Visa, Mastercard, and Amex through FAB bank partnership
               </p>
             </motion.div>
 
@@ -170,9 +171,9 @@ export default function RFMPartner() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               </div>
-              <h3 className="font-semibold text-navy mb-2 text-sm uppercase tracking-wide">Loyalty Expertise</h3>
+              <h3 className="font-semibold text-navy mb-2 text-sm uppercase tracking-wide">Loyalty Solutions</h3>
               <p className="text-navy/60 text-sm leading-relaxed">
-                Integrated customer engagement and rewards programs that drive retention
+                Design, launch, and manage loyalty programs for banks, retailers, hotels, and restaurants
               </p>
             </motion.div>
 
@@ -188,9 +189,9 @@ export default function RFMPartner() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="font-semibold text-navy mb-2 text-sm uppercase tracking-wide">Local Support</h3>
+              <h3 className="font-semibold text-navy mb-2 text-sm uppercase tracking-wide">UAE Presence</h3>
               <p className="text-navy/60 text-sm leading-relaxed">
-                Dedicated UAE-based team providing 24/7 support and implementation
+                Offices in Dubai, Abu Dhabi, and Ajman serving 15,000+ merchants since 2007
               </p>
             </motion.div>
           </div>
