@@ -84,9 +84,16 @@ export default function Navigation() {
       name: 'Products',
       href: '/products',
       dropdown: [
+        { name: 'Till Handheld', href: '/products/till-handheld' },
+        { name: 'Kitchen Display', href: '/products/kitchen-display' },
+        { name: 'Self-Ordering Kiosk', href: '/products/self-ordering-kiosk' },
         { name: 'Digital Menu', href: '/products/digital-menu' },
         { name: 'Order & Pay', href: '/products/order-and-pay' },
         { name: 'Pay at Table', href: '/products/pay-at-table' },
+        { name: 'Inventory', href: '/products/inventory' },
+        { name: 'CRM & Loyalty', href: '/products/crm-loyalty' },
+        { name: 'Payments', href: '/products/payments' },
+        { name: 'Table Management', href: '/products/table-management' },
       ]
     },
     {
@@ -99,6 +106,7 @@ export default function Navigation() {
         { name: 'Analytics', href: '/features/analytics' },
       ]
     },
+    { name: 'Integrations', href: '/integrations' },
     { name: 'Pricing', href: '/pricing' },
     { name: 'Contact', href: '/contact' },
   ]
@@ -186,20 +194,24 @@ export default function Navigation() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-64 bg-white/95 backdrop-blur-xl rounded-3xl shadow-xl border border-navy/5 overflow-hidden"
+                          className={`absolute top-full left-1/2 -translate-x-1/2 mt-6 bg-white/95 backdrop-blur-xl rounded-3xl shadow-xl border border-navy/5 overflow-hidden ${
+                            link.name === 'Products' ? 'w-[420px]' : 'w-64'
+                          }`}
                         >
-                          <div className="p-2">
+                          <div className={`p-2 ${
+                            link.name === 'Products' ? 'grid grid-cols-2 gap-0.5' : ''
+                          }`}>
                             {link.dropdown.map((item, index) => (
                               <Link key={item.name} href={item.href}>
                                 <motion.div
                                   initial={{ opacity: 0, y: -5 }}
                                   animate={{ opacity: 1, y: 0 }}
                                   transition={{ delay: index * 0.03, duration: 0.2 }}
-                                  className="group px-5 py-3.5 text-navy/80 hover:bg-coral/5 rounded-2xl transition-all duration-200 cursor-pointer text-sm font-medium flex items-center justify-between"
+                                  className="group px-4 py-3 text-navy/80 hover:bg-coral/5 rounded-2xl transition-all duration-200 cursor-pointer text-sm font-medium flex items-center justify-between"
                                 >
                                   <span className="group-hover:text-coral transition-colors">{item.name}</span>
                                   <svg
-                                    className="w-4 h-4 text-coral opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200"
+                                    className="w-3.5 h-3.5 text-coral opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
