@@ -108,6 +108,7 @@ export default function Navigation() {
     },
     { name: 'Integrations', href: '/integrations' },
     { name: 'Pricing', href: '/pricing' },
+    { name: 'Knowledge Base', href: '/knowledge-base' },
     { name: 'Contact', href: '/contact' },
   ]
 
